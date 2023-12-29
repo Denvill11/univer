@@ -5,6 +5,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from './auth/auth.module';
 import { User } from '../models/user';
 import { CustomJwtModule } from './customJWT/customJwtModule';
+import { AdminController } from './admin/admin.controller';
+import { AdminService } from './admin/admin.service';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -20,8 +23,9 @@ import { CustomJwtModule } from './customJWT/customJwtModule';
     }),
     AuthModule,
     CustomJwtModule,
+    AdminModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AdminController],
+  providers: [AdminService],
 })
 export class AppModule {}

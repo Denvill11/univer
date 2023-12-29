@@ -1,5 +1,8 @@
-import { BeforeCreate, Column, Model, Table } from 'sequelize-typescript';
+import { BeforeCreate, BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
+
+import { Task } from './task';
+import { UserTask } from './usertask';
 
 @Table
 export class User extends Model<User> {
@@ -17,6 +20,9 @@ export class User extends Model<User> {
 
   @Column({ allowNull: false })
   updatedAt: Date;
+
+  @BelongsToMany(() => Task, () => UserTask)
+  tasks: Task[];
 
   @BeforeCreate
   static async hashPassword(user: User) {
