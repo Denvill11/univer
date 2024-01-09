@@ -1,4 +1,4 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, ForeignKey, Model, Table } from 'sequelize-typescript';
 
 import { Task } from './task';
 import { User } from './user';
@@ -11,9 +11,17 @@ export class UserTask extends Model {
 
   @ForeignKey(() => User)
   @Column
-  userId: number; 
+  userId: number;
 
-  @Column
+  @BelongsTo(() => Task)
+  task: Task;
+
+  @BelongsTo(() => User)
+  user: User;
+
+  @Column({
+    defaultValue: 3,
+  })
   status: number;
 
   @Column({ allowNull: false })

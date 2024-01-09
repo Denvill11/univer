@@ -8,6 +8,10 @@ import { CustomJwtModule } from './customJWT/customJwtModule';
 import { AdminController } from './admin/admin.controller';
 import { AdminService } from './admin/admin.service';
 import { AdminModule } from './admin/admin.module';
+import { Task } from 'models/task';
+import { UserTask } from 'models/usertask';
+import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -19,13 +23,14 @@ import { AdminModule } from './admin/admin.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_DATABASE,
       database: process.env.DB_DATABASE,
-      models: [User],
+      models: [User, Task, UserTask],
     }),
     AuthModule,
     CustomJwtModule,
     AdminModule,
+    UserModule,
   ],
-  controllers: [AdminController],
-  providers: [AdminService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

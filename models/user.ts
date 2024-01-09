@@ -1,8 +1,8 @@
 import { BeforeCreate, BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
 
-import { Task } from './task';
 import { UserTask } from './usertask';
+import { Task } from './task';
 
 @Table
 export class User extends Model<User> {

@@ -4,7 +4,7 @@ import { UserTask } from './usertask';
 import { User } from './user';
 
 @Table
-export class Task extends Model {
+export class Task extends Model<Task> {
   @Column({ allowNull: false, unique: false })
   name : string;
 
@@ -18,5 +18,5 @@ export class Task extends Model {
   updatedAt: Date;
 
   @BelongsToMany(() => User, () => UserTask)
-  user: User[];
+  users: User[];
 }

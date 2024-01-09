@@ -9,11 +9,19 @@ module.exports = {
       },
       taskId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tasks',
+          key: 'id',
+        },
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { 
+          model: 'Users',
+          key: 'id',
+        },
       },
       status: {
         allowNull: false,
@@ -29,7 +37,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('UserTasks');
   }
 };
